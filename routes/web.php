@@ -11,6 +11,5 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'BookController@index');
+Route::get('message/{id}/edit', 'BookController@edit')->where('id', '[0-9]+');
