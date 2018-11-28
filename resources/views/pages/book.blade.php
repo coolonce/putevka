@@ -5,33 +5,42 @@
 
     <h1 class="text-center">HomeBook for PUTevka</h1>
     <hr/>
-<form method="POST" id="id-form_messages">
+    <form method="POST" id="id-form_messages" action="create">
 
-    @include('common.form')
+        @include('common.form')
+    </form>
     <br/>
-
-    <div class="messages">
-        <div class="panel panel-default">
-
-            <div class="panel-heading">
-                <h3 class="panel-title">
-                    <span>Карлсон</span>
-                    <span class="pull-right label label-info">17:15:00 / 03.07.20016</span>
-                </h3>
-            </div>
-            <div class="panel-body">
-                Hello
-                <hr/>
-                <div class="pull-right">
-                    <a href="#" class="btn btn-info">
-                        <i class="glyphicon glyphicon-pencil"></i>
-                    </a>
-                    <button class="btn btn-danger">
-                        <i class="glyphicon glyphicon-trash"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
+    <div class="text-right">
+        <b>
+            all message <i  class="badge">{{$count}}</i>
+        </b>
     </div>
-</form>
+    <div class="messages">
+        @if(!empty($messages))
+            @foreach($messages as $message)
+                <div class="panel panel-default">
+
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <span>#{{$message->id}} | {{$message->name}}</span>
+                            <span class="pull-right label label-info">{{$message->created_at}}</span>
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                       {{$message->message}}
+                        <hr/>
+                        <div class="pull-right">
+                            <a href="delete/{{$message->id}}" class="btn btn-danger">
+                                <i class="glyphicon glyphicon-trash"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+            <div class="text-center">
+                {!! $messages->render() !!}
+            </div>
+        @endif
+    </div>
+
 @stop

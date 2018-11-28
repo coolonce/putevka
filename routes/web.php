@@ -13,3 +13,5 @@
 
 Route::get('/', 'BookController@index');
 Route::get('message/{id}/edit', 'BookController@edit')->where('id', '[0-9]+');
+Route::post('create', 'BookController@create');
+Route::get('delete/{id}', 'BookController@delete');
